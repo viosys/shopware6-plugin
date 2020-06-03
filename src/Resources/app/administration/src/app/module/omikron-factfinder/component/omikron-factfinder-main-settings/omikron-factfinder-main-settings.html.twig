@@ -1,0 +1,86 @@
+{% block omikron_factfinder_configuration_main_settings %}
+<sw-card class="sw-card--grid"
+         :title="$tc('omikron-factfinder.settingForm.mainSettings')">
+
+  <sw-container>
+    <div v-if="actualConfigData" class="omikron-factfinder-main-settings-fields">
+
+      <sw-inherit-wrapper v-model="actualConfigData['OmikronFactFinder.settings.serverUrl']"
+                          :inheritedValue="selectedSalesChannelId === null ? null : allConfigs['null']['OmikronFactFinder.settings.serverUrl']">
+        <template #content="props">
+          <sw-text-field name="OmikronFactFinder.settings.serverUrl"
+                         :mapInheritance="props"
+                         :label="$tc('omikron-factfinder.settingForm.serverUrl')"
+                         :disabled="props.isInherited"
+                         :value="props.currentValue"
+                         @change="props.updateCurrentValue">
+          </sw-text-field>
+        </template>
+      </sw-inherit-wrapper>
+
+      <sw-inherit-wrapper v-model="actualConfigData['OmikronFactFinder.settings.channel']"
+                          :inheritedValue="selectedSalesChannelId === null ? null : allConfigs['null']['OmikronFactFinder.settings.channel']">
+        <template #content="props">
+          <sw-text-field name="OmikronFactFinder.settings.channel"
+                         :mapInheritance="props"
+                         :label="$tc('omikron-factfinder.settingForm.channel')"
+                         :disabled="props.isInherited"
+                         :value="props.currentValue"
+                         @change="props.updateCurrentValue">
+          </sw-text-field>
+        </template>
+      </sw-inherit-wrapper>
+
+      <sw-inherit-wrapper v-model="actualConfigData['OmikronFactFinder.settings.user']"
+                          :inheritedValue="selectedSalesChannelId === null ? null : allConfigs['null']['OmikronFactFinder.settings.user']">
+        <template #content="props">
+          <sw-text-field name="OmikronFactFinder.settings.user"
+                         :mapInheritance="props"
+                         :label="$tc('omikron-factfinder.settingForm.user')"
+                         :disabled="props.isInherited"
+                         :value="props.currentValue"
+                         @change="props.updateCurrentValue">
+          </sw-text-field>
+        </template>
+      </sw-inherit-wrapper>
+
+
+      <sw-inherit-wrapper v-model="actualConfigData['OmikronFactFinder.settings.password']"
+                          :inheritedValue="selectedSalesChannelId === null ? null : allConfigs['null']['OmikronFactFinder.settings.password']">
+        <template #content="props">
+          <sw-text-field name="OmikronFactFinder.settings.password"
+                         :mapInheritance="props"
+                         :label="$tc('omikron-factfinder.settingForm.password')"
+                         :disabled="props.isInherited"
+                         :value="props.currentValue"
+                         @change="props.updateCurrentValue">
+          </sw-text-field>
+        </template>
+      </sw-inherit-wrapper>
+
+{#      <sw-inherit-wrapper v-model="actualConfigData['OmikronFactFinder.settings.version']"#}
+{#                          :inheritedValue="selectedSalesChannelId === null ? null : allConfigs['null']['OmikronFactFinder.settings.version']">#}
+{#        <template #select="{ '7.3', 'NG' }">#}
+{#          <sw-card title="Version">#}
+{#            <sw-single-select#}
+{#                              labelProperty="translated.name"#}
+{#                              valueProperty="id"#}
+{#                              :options="salesChannel"#}
+{#                              @input="onInput">#}
+{#            </sw-single-select>#}
+{#          </sw-card>#}
+{#        </template>#}
+{#      </sw-inherit-wrapper>#}
+
+
+      <sw-button-process
+        :isLoading="isTesting"
+        :disabled="testButtonDisabled"
+        @click="onTestConnection()">
+        {{ $tc('omikron-factfinder.settingForm.testConnection') }}
+      </sw-button-process>
+    </div>
+  </sw-container>
+</sw-card>
+BLABLA
+{% endblock %}

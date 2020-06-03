@@ -1,0 +1,18 @@
+{
+  "omikron-factfinder": {
+    "header": "OmikronFactfinder",
+    "general": {
+      "mainMenuItemGeneral": "Omikron FACT-Finder WebComponents",
+      "descriptionTextModule": "Module for FACT-Finder Web Components"
+    },
+    "settingForm": {
+      "mainSettings": "Main settings",
+      "serverUrl": "Server URL",
+      "channel": "Channel",
+      "user": "User",
+      "password": "Password",
+      "save": "Save",
+      "testConnection": "Test connection"
+    }
+  }
+}

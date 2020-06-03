@@ -1,0 +1,56 @@
+{% block omikron_factfinder_configuration %}
+<sw-page class="omikron-factfinder">
+
+  <template #smart-bar-header>
+    <h2>
+      {{ $tc('sw-settings.index.title') }}
+      <sw-icon name="small-arrow-medium-right" small></sw-icon>
+      {{ $tc('omikron-factfinder.header') }}
+    </h2>
+  </template>
+
+  <template #smart-bar-actions>
+    <sw-button-process v-model="isSaveSuccessful"
+                       class="sw-settings-login-registration__save-action"
+                       variant="primary"
+                       :isLoading="isLoading"
+                       :disabled="isLoading || savingDisabled"
+                       @click="onSave">
+      {{ $tc('omikron-factfinder.settingForm.save') }}
+    </sw-button-process>
+  </template>
+
+  <template #content>
+    <sw-card-view>
+      <sw-sales-channel-config v-model="config"
+                               ref="configComponent"
+                               domain="OmikronFactfinder.settings">
+        <template #select="{ onInput, selectedSalesChannelId, salesChannel }">
+          <sw-card title="Sales Channel Switch">
+            <sw-single-select v-model="selectedSalesChannelId"
+                              labelProperty="translated.name"
+                              valueProperty="id"
+                              :options="salesChannel"
+                              @input="onInput">
+            </sw-single-select>
+          </sw-card>
+        </template>
+
+        <template #content="{ actualConfigData, allConfigs, selectedSalesChannelId }">
+          <div>
+            <omikron-factfinder-main-settings
+              :actualConfigData="actualConfigData"
+              :allConfigs="allConfigs"
+              :selectedSalesChannelId="selectedSalesChannelId"
+              :isLoading="isLoading">
+            </omikron-factfinder-main-settings>
+          </div>
+        </template>
+      </sw-sales-channel-config>
+      <sw-loader v-if="isLoading"></sw-loader>
+    </sw-card-view>
+  </template>
+
+</sw-page>
+
+{% endblock %}
