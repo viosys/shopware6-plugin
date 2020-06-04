@@ -12,7 +12,8 @@
       "user": "User",
       "password": "Password",
       "save": "Save",
-      "testConnection": "Test connection"
+      "testConnection": "Test connection",
+      "version": "Version"
     }
   }
 }

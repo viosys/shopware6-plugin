@@ -15,7 +15,6 @@ Component.register('omikron-factfinder', {
             isLoading: false,
             isSaveSuccessful: false,
             config: null,
-            savingDisabled: false,
         };
     },
 
@@ -46,6 +45,10 @@ Component.register('omikron-factfinder', {
 
             }).catch(() => {
                 this.isLoading = false;
+                this.createNotificationError({
+                    title: this.$tc('global.default.error'),
+                    message: this.$tc('global.default.error'),
+                });
             });
         },
     },

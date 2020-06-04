@@ -33,5 +33,7 @@
         </instanceof>
 
         <prototype namespace="Omikron\FactFinder\Shopware6\" resource="../../{Command,Resources,Storefront,Subscriber}" />
+        <service id="Omikron\FactFinder\Shopware6\Configuration\Service\TestConnectionService"/>
+        <service id="Omikron\FactFinder\Shopware6\Configuration\TestConnectionController" public="true"/>
     </services>
 </container>

@@ -5,10 +5,10 @@
   <sw-container>
     <div v-if="actualConfigData" class="omikron-factfinder-main-settings-fields">
 
-      <sw-inherit-wrapper v-model="actualConfigData['OmikronFactFinder.settings.serverUrl']"
-                          :inheritedValue="selectedSalesChannelId === null ? null : allConfigs['null']['OmikronFactFinder.settings.serverUrl']">
+      <sw-inherit-wrapper v-model="actualConfigData['OmikronFactFinder.config.serverUrl']"
+                          :inheritedValue="selectedSalesChannelId === null ? null : allConfigs['null']['OmikronFactFinder.config.serverUrl']">
         <template #content="props">
-          <sw-text-field name="OmikronFactFinder.settings.serverUrl"
+          <sw-text-field name="OmikronFactFinder.config.serverUrl"
                          :mapInheritance="props"
                          :label="$tc('omikron-factfinder.settingForm.serverUrl')"
                          :disabled="props.isInherited"
@@ -18,10 +18,10 @@
         </template>
       </sw-inherit-wrapper>
 
-      <sw-inherit-wrapper v-model="actualConfigData['OmikronFactFinder.settings.channel']"
-                          :inheritedValue="selectedSalesChannelId === null ? null : allConfigs['null']['OmikronFactFinder.settings.channel']">
+      <sw-inherit-wrapper v-model="actualConfigData['OmikronFactFinder.config.channel']"
+                          :inheritedValue="selectedSalesChannelId === null ? null : allConfigs['null']['OmikronFactFinder.config.channel']">
         <template #content="props">
-          <sw-text-field name="OmikronFactFinder.settings.channel"
+          <sw-text-field name="OmikronFactFinder.config.channel"
                          :mapInheritance="props"
                          :label="$tc('omikron-factfinder.settingForm.channel')"
                          :disabled="props.isInherited"
@@ -31,10 +31,10 @@
         </template>
       </sw-inherit-wrapper>
 
-      <sw-inherit-wrapper v-model="actualConfigData['OmikronFactFinder.settings.user']"
-                          :inheritedValue="selectedSalesChannelId === null ? null : allConfigs['null']['OmikronFactFinder.settings.user']">
+      <sw-inherit-wrapper v-model="actualConfigData['OmikronFactFinder.config.user']"
+                          :inheritedValue="selectedSalesChannelId === null ? null : allConfigs['null']['OmikronFactFinder.config.user']">
         <template #content="props">
-          <sw-text-field name="OmikronFactFinder.settings.user"
+          <sw-text-field name="OmikronFactFinder.config.user"
                          :mapInheritance="props"
                          :label="$tc('omikron-factfinder.settingForm.user')"
                          :disabled="props.isInherited"
@@ -45,10 +45,10 @@
       </sw-inherit-wrapper>
 
 
-      <sw-inherit-wrapper v-model="actualConfigData['OmikronFactFinder.settings.password']"
-                          :inheritedValue="selectedSalesChannelId === null ? null : allConfigs['null']['OmikronFactFinder.settings.password']">
+      <sw-inherit-wrapper v-model="actualConfigData['OmikronFactFinder.config.password']"
+                          :inheritedValue="selectedSalesChannelId === null ? null : allConfigs['null']['OmikronFactFinder.config.password']">
         <template #content="props">
-          <sw-text-field name="OmikronFactFinder.settings.password"
+          <sw-text-field name="OmikronFactFinder.config.password"
                          :mapInheritance="props"
                          :label="$tc('omikron-factfinder.settingForm.password')"
                          :disabled="props.isInherited"
@@ -58,23 +58,25 @@
         </template>
       </sw-inherit-wrapper>
 
-{#      <sw-inherit-wrapper v-model="actualConfigData['OmikronFactFinder.settings.version']"#}
-{#                          :inheritedValue="selectedSalesChannelId === null ? null : allConfigs['null']['OmikronFactFinder.settings.version']">#}
-{#        <template #select="{ '7.3', 'NG' }">#}
-{#          <sw-card title="Version">#}
-{#            <sw-single-select#}
-{#                              labelProperty="translated.name"#}
-{#                              valueProperty="id"#}
-{#                              :options="salesChannel"#}
-{#                              @input="onInput">#}
-{#            </sw-single-select>#}
-{#          </sw-card>#}
-{#        </template>#}
-{#      </sw-inherit-wrapper>#}
+      <sw-inherit-wrapper v-model="actualConfigData['OmikronFactFinder.config.version']"
+                          :inheritedValue="selectedSalesChannelId == null ? null : allConfigs['null']['OmikronFactFinder.config.version']"
+                          :label="$tc('omikron-factfinder.settingForm.version')">
+        <template #content="props">
+          <sw-single-select name="OmikronFactFinder.config.version"
+                            labelProperty="name"
+                            valueProperty="id"
+                            :options="versions"
+                            :isInherited="props.isInherited"
+                            :disabled="props.isInherited"
+                            :value="props.currentValue"
+                            @input="props.updateCurrentValue">
+          </sw-single-select>
+        </template>
+      </sw-inherit-wrapper>
 
 
       <sw-button-process
-        :isLoading="isTesting"
+        :isLoading="isLoading"
         :disabled="testButtonDisabled"
         @click="onTestConnection()">
         {{ $tc('omikron-factfinder.settingForm.testConnection') }}
@@ -82,5 +84,4 @@
     </div>
   </sw-container>
 </sw-card>
-BLABLA
 {% endblock %}

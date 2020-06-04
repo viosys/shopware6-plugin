@@ -30,39 +30,36 @@ Component.register('omikron-factfinder-main-settings', {
         },
     },
 
-    data() {
-        return {
-            isTesting: false,
-        };
-    },
-
     computed: {
         testButtonDisabled() {
-            return false;
+            return !(this.actualConfigData['OmikronFactFinder.config.serverUrl'] &&
+                this.actualConfigData['OmikronFactFinder.config.channel'] &&
+                this.actualConfigData['OmikronFactFinder.config.user'] &&
+                this.actualConfigData['OmikronFactFinder.config.password']);
+        },
+
+        versions() {
+            return [
+                {
+                    id: '7.3',
+                    name: '7.3',
+                },
+                {
+                    id: 'NG',
+                    name: 'NG',
+                },
+            ];
         },
     },
 
     methods: {
-        checkTextFieldInheritance(value) {
-            if (typeof value !== 'string') {
-                return true;
-            }
-
-            return value.length <= 0;
-        },
-
-        checkBoolFieldInheritance(value) {
-            return typeof value !== 'boolean';
-        },
-
         onTestConnection() {
             this.isLoading = true;
-            console.log(this.actualConfigData);
             return this.OmikronFactfinderTestConnectionService.testConnection(
-                this.actualConfigData['OmikronFactFinder.settings.serverUrl'],
-                this.actualConfigData['OmikronFactFinder.settings.channel'],
-                this.actualConfigData['OmikronFactFinder.settings.user'],
-                this.actualConfigData['OmikronFactFinder.settings.password'],
+                this.actualConfigData['OmikronFactFinder.config.serverUrl'],
+                this.actualConfigData['OmikronFactFinder.config.channel'],
+                this.actualConfigData['OmikronFactFinder.config.user'],
+                this.actualConfigData['OmikronFactFinder.config.password'],
             ).then((response) => {
                 const connectionEstablished = response.connectionEstablished;
 
@@ -73,9 +70,9 @@ Component.register('omikron-factfinder-main-settings', {
                         message: this.$tc('global.default.success'),
                     });
                 } else {
-                    this.createNotificationSuccess({
-                        title: this.$tc('global.default.success'),
-                        message: '=(',
+                    this.createNotificationError({
+                        title: this.$tc('global.default.error'),
+                        message: response.error,
                     });
                 }
             });

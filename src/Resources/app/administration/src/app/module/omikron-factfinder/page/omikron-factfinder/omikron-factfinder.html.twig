@@ -14,7 +14,7 @@
                        class="sw-settings-login-registration__save-action"
                        variant="primary"
                        :isLoading="isLoading"
-                       :disabled="isLoading || savingDisabled"
+                       :disabled="isLoading"
                        @click="onSave">
       {{ $tc('omikron-factfinder.settingForm.save') }}
     </sw-button-process>
@@ -24,7 +24,7 @@
     <sw-card-view>
       <sw-sales-channel-config v-model="config"
                                ref="configComponent"
-                               domain="OmikronFactfinder.settings">
+                               domain="OmikronFactFinder.config">
         <template #select="{ onInput, selectedSalesChannelId, salesChannel }">
           <sw-card title="Sales Channel Switch">
             <sw-single-select v-model="selectedSalesChannelId"
