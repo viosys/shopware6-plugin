@@ -17,15 +17,6 @@ Component.register('omikron-factfinder', {
             config: null,
         };
     },
-
-    watch: {
-        config: {
-            handler() {
-                const defaultConfig = this.$refs.configComponent.allConfigs.null;
-                const salesChannelId = this.$refs.configComponent.selectedSalesChannelId;
-            },
-        },
-    },
     methods: {
         onSave() {
             this.isLoading = true;

@@ -24,10 +24,11 @@ Component.register('omikron-factfinder-main-settings', {
         selectedSalesChannelId: {
             required: true,
         },
-        isLoading: {
-            type: Boolean,
-            required: true,
-        },
+    },
+    data() {
+        return {
+            isLoading: false,
+        };
     },
 
     computed: {
@@ -62,9 +63,8 @@ Component.register('omikron-factfinder-main-settings', {
                 this.actualConfigData['OmikronFactFinder.config.password'],
             ).then((response) => {
                 const connectionEstablished = response.connectionEstablished;
-
+                this.isLoading = false;
                 if (connectionEstablished) {
-                    this.isLoading = false;
                     this.createNotificationSuccess({
                         title: this.$tc('global.default.success'),
                         message: this.$tc('global.default.success'),

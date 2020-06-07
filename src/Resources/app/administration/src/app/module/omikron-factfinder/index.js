@@ -5,7 +5,7 @@ import './component/omikron-factfinder-main-settings';
 import deDE from './snippet/de-DE.json';
 import enGB from './snippet/en-GB.json';
 
-const { Module } = Shopware;
+const {Module} = Shopware;
 
 Module.register('omikron-factfinder', {
     type: 'plugin',
@@ -19,7 +19,7 @@ Module.register('omikron-factfinder', {
 
     snippets: {
         'de-DE': deDE,
-        'en-GB': enGB
+        'en-GB': enGB,
     },
 
     routes: {
@@ -27,8 +27,8 @@ Module.register('omikron-factfinder', {
             component: 'omikron-factfinder',
             path: 'index',
             meta: {
-                parentPath: 'sw.settings.index'
-            }
-        }
-    }
+                parentPath: 'sw.settings.index',
+            },
+        },
+    },
 });
